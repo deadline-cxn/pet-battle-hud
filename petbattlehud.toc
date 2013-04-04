@@ -1,0 +1,11 @@
+## Interface: 50100
+## Title: Pet Battle HUD
+## Author: Smashed (Bladefist)
+## Notes: Pet Battle HUD
+## Version: 5.1.0.2
+## SavedVariables: PBHUD_Profile
+## $e$b#ttlehud.lua
+Smashed\Smashed.Lib.xml
+petbattlehud.xml
+petbattlehudoptions.xml
+

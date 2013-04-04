@@ -1,0 +1,493 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:ProjectsWoWBinInterfaceFrameXMLUI.xsd">
+
+<Script file="PetBattleHUD.lua"/>
+
+<Button name="PBH_Template" enableMouse="true" virtual="true">
+	<Size>
+		<AbsDimension x="32" y="32"/>
+	</Size>
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+			<Offset>
+				<AbsDimension x="6" y="-24"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+	<Layers>
+
+		<Layer level="BACKGROUND">
+			<Texture name="$parentBackground" file="Interface\GLUES\CHARACTERCREATE\UI-CharacterCreatePatchwerk">
+				<TexCoords left="0.01" right="0.41" top="0.6093" bottom="0.69" />
+				<Size>
+					<AbsDimension x="200" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-8" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="BORDER">
+			<Texture name="$parentTexture" file="Interface\Icons\INV_DIABLOSTONE">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="2" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="ARTWORK">
+			<Texture name="$parentStuff" inherits="MainPet-Frame" >
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-8" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="OVERLAY">
+			<Texture name="$parentDeadIcon" file="Interface\LootFrame\LootPanel-Icon">
+				<Size>
+					<AbsDimension x="30" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="1" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<!-- LEVEL BUBBLE -->
+
+		<Layer level="OVERLAY">
+			<Texture name="$parentLevelBubble" inherits="MainPet-LevelBubble" >
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" x="-6" y="6" />
+			  </Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="OVERLAY">
+			<FontString name="$parentLevelText" font="Fonts\FRIZQT__.TTF" virtual="true" outline="NORMAL" justifyH="CENTER" justifyV="MIDDLE" >
+				<Color r="1" g="1" b="1" a="1"/>
+				<FontHeight val="7"/>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$parentLevelBubble" />
+			  </Anchors>			  
+			</FontString>
+		</Layer>
+		
+		<Layer level="OVERLAY">
+			<Texture name="$parentTypeBubble"> 
+				<!-- inherits="MainPet-LevelBubble" -->
+				<Size>
+					<AbsDimension x="20" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" x="-12" y="-6" />
+			  </Anchors>
+			</Texture>
+		</Layer>		
+
+		<!-- NAME  -->
+
+		<Layer level="OVERLAY">
+			<FontString name="$parentNameText" JustifyH="LEFT"  font="Fonts\FRIZQT__.TTF">
+				<FontHeight val="9" />
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parent">
+						<Offset>
+							<AbsDimension x="35" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+
+		<!--  HP STUFF -->
+
+		<Layer level="ARTWORK">
+			<Texture name="$parentHPMaxTexture" file="Interface\AddOns\petbattlehud\PBHUD_HPDeficitBar">
+				<Size>
+					<AbsDimension x="100" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parent">
+						<Offset>
+							<AbsDimension x="35" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="OVERLAY">
+			<Texture name="$parentHPTexture" file="Interface\AddOns\petbattlehud\PBHUD_HPBar">
+				<Size>
+					<AbsDimension x="100" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parent">
+						<Offset>
+							<AbsDimension x="35" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="OVERLAY">
+			<FontString name="$parentHPText" JustifyH="CENTER" font="Fonts\FRIZQT__.TTF">
+				<FontHeight val="9"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parentHPTexture" />
+				</Anchors>
+			</FontString>
+		</Layer>
+
+		<!--  XP STUFF -->
+
+		<Layer level="ARTWORK">
+			<Texture name="$parentXPMaxTexture" file="Interface\AddOns\petbattlehud\PBHUD_XPMaxBar">
+				<Size>
+					<AbsDimension x="100" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parent">
+						<Offset>
+							<AbsDimension x="35" y="-22"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="OVERLAY">
+			<Texture name="$parentXPTexture" file="Interface\AddOns\petbattlehud\PBHUD_XPBar">
+				<Size>
+					<AbsDimension x="100" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parent">
+						<Offset>
+							<AbsDimension x="35" y="-22"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="OVERLAY">
+			<FontString name="$parentXPText" JustifyH="CENTER" font="Fonts\FRIZQT__.TTF">
+				<FontHeight val="9" />
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parentXPTexture" />
+				</Anchors>
+			</FontString>
+		</Layer>
+
+		<!--  Speed icon -->
+
+		<Layer level="BORDER">
+			<Texture name="$parentSpeedBG" file="Interface\MoneyFrame\UI-MONEYFRAME-BORDER">
+				<Size>							<AbsDimension x="48" y="20"/> 						</Size>
+
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="136" y="-10"/>
+						</Offset>
+
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="ARTWORK">
+			<Texture name="$parentSpeedIcon" file="Interface\PetBattles\PetBattle-StatIcons">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<TexCoords left="0.0" right="0.5" top="0.5" bottom="1.0"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parentSpeedBG">
+						<Offset>
+							<AbsDimension x="9" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="OVERLAY">
+			<FontString name="$parentSpeedText" text="123" JustifyH="CENTER" font="Fonts\FRIZQT__.TTF">
+				<FontHeight val="9" />
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parentSpeedIcon">
+						<Offset>
+							<AbsDimension x="10" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+
+		<!--  Power icon -->
+
+		<Layer level="BORDER">
+			<Texture name="$parentPowerBG" file="Interface\MoneyFrame\UI-MONEYFRAME-BORDER">
+				<Size>
+					<AbsDimension x="48" y="20"/>
+				</Size>
+
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parentSpeedBG">
+						<Offset>
+							<AbsDimension x="0" y="-11"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="ARTWORK">
+			<Texture name="$parentPowerIcon" file="Interface\PetBattles\PetBattle-StatIcons">
+				<Size>
+					<AbsDimension x="10" y="10"/>
+				</Size>
+				<TexCoords left="0.0" right="0.5" top="0.0" bottom="0.5"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parentPowerBG">
+						<Offset>
+							<AbsDimension x="9" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+
+		<Layer level="OVERLAY">
+			<FontString name="$parentPowerText" text="123" JustifyH="CENTER" font="Fonts\FRIZQT__.TTF">
+				<FontHeight val="9" />
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parentPowerIcon">
+						<Offset>
+							<AbsDimension x="10" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+
+	</Layers>
+</Button>
+	
+
+
+
+<Frame name="PBHUD" hidden="false" toplevel="true" enableMouse="true" sizeabe="true" movable="true" parent="UIParent" >
+	<Size>
+		<AbsDimension x="200" y="185"/>
+	</Size>
+	
+	<Anchors>
+		<Anchor point="TOPLEFT">
+			<Offset>
+				<AbsDimension x="200" y="-200"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+
+	<Layers>
+		<Layer level="BACKGROUND">
+			<Texture name="$parentBackgroundTexture" file="Interface\LFGFRAME\UI-LFG-BACKGROUND-HEROIC" alpha="0.2">			
+				<Size>
+					<AbsDimension x="330" y="185"/>
+				</Size>
+				
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>	
+		</Layer>
+
+	</Layers>
+
+	<Frames>
+
+
+	
+	<Button name="$parentOptions">	
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		
+		<Anchors>
+				<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT" />
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">			
+				<Texture name="$parentIcon" file="Interface\WorldMap\Gear_64Grey">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		
+		<!-- INTERFACE/WorldMap/Gear_64 		<TexCoords left="0.0" right="0.5" top="0.5" bottom="1.0"/> 		-->
+		
+		<Scripts>
+			<OnLoad>
+				PBHUDOptionsIcon.tooltipText = "Pet Battle HUD "..GetAddOnMetadata("petbattlehud", "Version").."|r|nBy Smashed (Bladefist)|r|nLeft Click to set options";
+				PBHUDOptions:Hide();
+			</OnLoad>
+			
+			<OnClick>
+				PBHUDOptions_Toggle();
+			</OnClick>
+		
+			<OnEnter>
+				PBHUDOptions:Show();
+				PBHUDOptionsIcon:SetVertexColor(1,1,0);
+				GameTooltip:SetOwner(PBHUDOptions, "ANCHOR_LEFT");
+				GameTooltip:SetText(PBHUDOptionsIcon.tooltipText);
+			</OnEnter>
+			
+			<OnLeave>
+				PBHUDOptionsIcon:SetVertexColor(1,1,1);
+				GameTooltip:Hide();
+				PBHUDOptions:Hide();
+			</OnLeave>			
+		</Scripts>
+	</Button>
+
+	
+
+		<!-- PBHUDPet1  **************************************************************************************** -->
+	
+		<Button name="$parentPet1" inherits="PBH_Template">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="6" y="-32"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</Button>
+
+		<!-- PBHUDPet2  **************************************************************************************** -->
+		
+		<Button name="$parentPet2" inherits="PBH_Template">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parentPet1" relativePoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="-46"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</Button>
+
+		<!-- PBHUDPet3  **************************************************************************************** -->
+
+		<Button name="$parentPet3" inherits="PBH_Template">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parentPet2" relativePoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="-46"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</Button>
+
+	</Frames>
+
+
+	<!-- PBHUD Scripts  **************************************************************************************** -->
+
+	<Scripts>
+		<OnUpdate>
+			PBHUD_OnUpdate(self);
+		</OnUpdate>
+		
+		<OnLoad>
+			PBHUD_OnLoad(self);
+			PBHUDBackgroundTexture:Hide();
+			PBHUDBackgroundTexture:SetVertexColor(1,0,0);
+		</OnLoad>
+		
+		<OnMouseDown>
+			self:StartMoving();
+		</OnMouseDown>
+		
+		<OnMouseUp>
+			self:StopMovingOrSizing();
+		</OnMouseUp>
+		
+		<OnEvent>
+			PBHUD_OnEvent(self, event, ...);
+		</OnEvent>
+		
+		<OnEnter>
+			PBHUDBackgroundTexture:Show();
+			PBHUDOptions:Show();
+		
+		</OnEnter>
+		
+		<OnLeave>
+		
+			PBHUDBackgroundTexture:Hide();
+			PBHUDOptions:Hide();
+		
+		</OnLeave>		
+		
+	</Scripts>
+
+	<!-- PBHUD - END  **************************************************************************************** -->
+
+</Frame>
+
+
+
+<GameTooltip name="PBHUDTooltip" inherits="GameTooltipTemplate">
+   <Scripts>
+	 <Onload>
+	   PBHUDTooltip:SetOwner(PBHUD, "ANCHOR_NONE");
+	 </Onload>
+   </Scripts>
+</GameTooltip>
+</Ui>
