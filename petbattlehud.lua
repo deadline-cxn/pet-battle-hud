@@ -326,7 +326,7 @@ sml_Dprint(PBHUD_db.Debug,"PBHUD",
 		if string.find(tooltip, zone) then
 			if(string.find(tooltip, "Pet Battle:")) then
 				if (owned==false) then
-					sml_Dprint(PBHUD_db.Debug,"PBHUD","id["..id.."]".." tooltip["..tooltip.."] description["..description.."]");						
+					sml_Dprint(PBHUD_db.Debug,"PBHUD","id["..tostring(id).."]".." tooltip["..tostring(tooltip).."] description["..description.."]");						
 					if(nopets~="") then 
 						nopets=nopets..WFCC..","..OFCC..name;
 					else
