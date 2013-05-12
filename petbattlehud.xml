@@ -305,11 +305,17 @@
 </Button>
 	
 
-
+<Frame name="PBHUDUPDATE" hidden="false" toplevel="true" enableMouse="true" sizeabe="true" movable="true" parent="UIParent" >
+	<Scripts>
+		<OnUpdate>
+			PBHUD_OnUpdate(self);
+		</OnUpdate>
+	</Scripts>
+</Frame>
 
 <Frame name="PBHUD" hidden="false" toplevel="true" enableMouse="true" sizeabe="true" movable="true" parent="UIParent" >
 	<Size>
-		<AbsDimension x="200" y="185"/>
+		<AbsDimension x="200" y="140"/>
 	</Size>
 	
 	<Anchors>
@@ -319,18 +325,19 @@
 			</Offset>
 		</Anchor>
 	</Anchors>
+	
 
 	<Layers>
 		<Layer level="BACKGROUND">
 			<Texture name="$parentBackgroundTexture" file="Interface\LFGFRAME\UI-LFG-BACKGROUND-HEROIC" alpha="0.2">			
 				<Size>
-					<AbsDimension x="330" y="185"/>
+					<AbsDimension x="320" y="140"/>
 				</Size>
 				
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="-8" y="0"/>
+							<AbsDimension x="0" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -339,7 +346,10 @@
 
 	</Layers>
 
+	
+
 	<Frames>
+	
 
 
 	
@@ -351,6 +361,7 @@
 		<Anchors>
 				<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT" />
 		</Anchors>
+		
 		<Layers>
 			<Layer level="ARTWORK">			
 				<Texture name="$parentIcon" file="Interface\WorldMap\Gear_64Grey">
@@ -361,7 +372,7 @@
 					<Anchors>
 						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" relativeTo="$parent">
 							<Offset>
-								<AbsDimension x="0" y="-10"/>
+								<AbsDimension x="0" y="0"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -404,7 +415,7 @@
 			<Anchors>
 				<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
 					<Offset>
-						<AbsDimension x="6" y="-32"/>
+						<AbsDimension x="8" y="-8"/>
 					</Offset>
 				</Anchor>
 			</Anchors>
@@ -440,14 +451,10 @@
 	<!-- PBHUD Scripts  **************************************************************************************** -->
 
 	<Scripts>
-		<OnUpdate>
-			PBHUD_OnUpdate(self);
-		</OnUpdate>
+		
 		
 		<OnLoad>
 			PBHUD_OnLoad(self);
-			PBHUDBackgroundTexture:Hide();
-			PBHUDBackgroundTexture:SetVertexColor(1,0,0);
 		</OnLoad>
 		
 		<OnMouseDown>
@@ -463,14 +470,12 @@
 		</OnEvent>
 		
 		<OnEnter>
-			PBHUDBackgroundTexture:Show();
 			PBHUDOptions:Show();
 		
 		</OnEnter>
 		
 		<OnLeave>
-		
-			PBHUDBackgroundTexture:Hide();
+
 			PBHUDOptions:Hide();
 		
 		</OnLeave>		

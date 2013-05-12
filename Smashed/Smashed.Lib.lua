@@ -65,8 +65,9 @@ end
 
 --[sml_print]------------------------------------------------------------
 function sml_print(addon,msg)
+	msg=tostring(msg);
 	if(addon~=nil) then
-		DEFAULT_CHAT_FRAME:AddMessage(RFCC..addon.." >> "..YFCC..tostring(msg));
+		DEFAULT_CHAT_FRAME:AddMessage(RFCC..tostring(addon).." >> "..YFCC..tostring(msg));
 	else 
 		DEFAULT_CHAT_FRAME:AddMessage(YFCC..tostring(msg));
 	end

@@ -13,15 +13,32 @@ end
 --[PBHUD_OnUpdate]-------------------------------------------------------------------------
 function PBHUD_OnUpdate(self)
 
-	if(PBHUD_InGroup()==false) then PBHUD:Show(); end
-	
 	if(PBHUD_db~=nil) then
-		if(PBHUD_db.FlashTimer==nil) then  PBHUD_db.FlashTimer=GetTime(); end
-		if(PBHUD_db.Initiate_PetsMissing~=nil) then if((GetTime()-PBHUD_db.Initiate_PetsMissing)>5) then PBHUD_db.Initiate_PetsMissing=nil; PBHUD_PetsMissing(); end end
-		if((GetTime() - PBHUD_db.FlashTimer) > 1) then
-			
-			PBHUD_UpdatePetHUD();
-			
+	
+		if(PBHUD_db.b_party_hide) then
+			local ingroup=PBHUD_InGroup();
+			if(ingroup) then
+				PBHUD:Hide();		
+			else 
+				PBHUD:Show();
+			end
+		end	
+	
+		if(PBHUD_db.FlashTimer==nil) then
+			PBHUD_db.FlashTimer=GetTime();
+		end
+		
+		
+		if(PBHUD_db.Initiate_PetsMissing~=nil) then
+			if((GetTime()-PBHUD_db.Initiate_PetsMissing)>5) then
+				PBHUD_db.Initiate_PetsMissing=nil;
+				PBHUD_PetsMissing();
+			end
+		end
+		
+		
+		if((GetTime() - PBHUD_db.FlashTimer) > 1) then			
+			PBHUD_UpdatePetHUD();			
 			PBHUD_db.FlashTimer=GetTime();
 			if (PBHUD_db.DColor==nil) then PBHUD_db.DColor=1; end
 			if (PBHUD_db.DColor==1) then
@@ -36,6 +53,9 @@ function PBHUD_OnUpdate(self)
 				PBHUDPet3DeadIcon:SetVertexColor(1,1,0);
 			end
 		end
+		
+		
+		
 	end
 end
 --[PBHUD_SaveStuff]----------------------------------------------------------------------
@@ -154,56 +174,6 @@ function PBHUD_OnEvent(self, event, ...)
 	if (event == "COMPANION_LEARNED") then end
 	------------------------------------------------------------------------	
 	if (event == "ZONE_CHANGED_NEW_AREA") then PBHUD_PetsMissing(); end
-	------------------------------------------------------------------------		
-	if (event == "GROUP_JOINED") then if(PBHUD_db.b_party_hide) then PBHUD:Hide(); end end
-	------------------------------------------------------------------------
-	if (event == "PARTY_CONVERTED_TO_RAID") then
-		sml_Dprint(PBHUD_db.Debug,"PBHUD","PARTY_CONVERTED_TO_RAID");
-		sml_Dprint(PBHUD_db.Debug,"PBHUD",argztxt);
-	end
-	if (event == "PARTY_INVITE_CANCEL") then
-		sml_Dprint(PBHUD_db.Debug,"PBHUD","PARTY_INVITE_CANCEL");
-		sml_Dprint(PBHUD_db.Debug,"PBHUD",argztxt);
-	end
-	if (event == "PARTY_INVITE_REQUEST") then
-		sml_Dprint(PBHUD_db.Debug,"PBHUD","PARTY_INVITE_REQUEST");
-		sml_Dprint(PBHUD_db.Debug,"PBHUD",argztxt);
-	end
-	if (event == "PARTY_LEADER_CHANGED") then
-		sml_Dprint(PBHUD_db.Debug,"PBHUD","PARTY_LEADER_CHANGED");
-		sml_Dprint(PBHUD_db.Debug,"PBHUD",argztxt);
-	end
-	if (event == "PARTY_LFG_RESTRICTED") then
-		sml_Dprint(PBHUD_db.Debug,"PBHUD","PARTY_LFG_RESTRICTED");		
-		sml_Dprint(PBHUD_db.Debug,"PBHUD",argztxt);
-	end
-	if (event == "PARTY_LOOT_METHOD_CHANGED") then
-		sml_Dprint(PBHUD_db.Debug,"PBHUD","PARTY_LOOT_METHOD_CHANGED");
-		sml_Dprint(PBHUD_db.Debug,"PBHUD",argztxt);
-	end
-	if (event == "PARTY_MEMBERS_CHANGED") then
-		sml_Dprint(PBHUD_db.Debug,"PBHUD","PARTY_MEMBERS_CHANGED");
-		sml_Dprint(PBHUD_db.Debug,"PBHUD",argztxt);
-	end
-	if (event == "PARTY_MEMBER_DISABLE") then
-		sml_Dprint(PBHUD_db.Debug,"PBHUD","PARTY_MEMBER_DISABLE");
-		sml_Dprint(PBHUD_db.Debug,"PBHUD",argztxt);
-	end
-	if (event == "PARTY_MEMBER_ENABLE") then
-		sml_Dprint(PBHUD_db.Debug,"PBHUD","PARTY_MEMBER_ENABLE");
-		sml_Dprint(PBHUD_db.Debug,"PBHUD",argztxt);
-	end
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 end
 ------------------------------------------------------------------------
 function PBHUD_PetHeal(petname,heal)
@@ -326,7 +296,7 @@ sml_Dprint(PBHUD_db.Debug,"PBHUD",
 		if string.find(tooltip, zone) then
 			if(string.find(tooltip, "Pet Battle:")) then
 				if (owned==false) then
-					sml_Dprint(PBHUD_db.Debug,"PBHUD","id["..tostring(id).."]".." tooltip["..tostring(tooltip).."] description["..tostring(description).."]");
+					sml_Dprint(PBHUD_db.Debug,"PBHUD","id["..tostring(id).."]".." tooltip["..tostring(tooltip).."] description["..description.."]");						
 					if(nopets~="") then 
 						nopets=nopets..WFCC..","..OFCC..name;
 					else
