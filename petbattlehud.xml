@@ -304,7 +304,6 @@
 	</Layers>
 </Button>
 	
-
 <Frame name="PBHUDUPDATE" hidden="false" toplevel="true" enableMouse="true" sizeabe="true" movable="true" parent="UIParent" >
 	<Scripts>
 		<OnUpdate>
@@ -406,7 +405,7 @@
 			</OnLeave>			
 		</Scripts>
 	</Button>
-
+	
 	
 
 		<!-- PBHUDPet1  **************************************************************************************** -->

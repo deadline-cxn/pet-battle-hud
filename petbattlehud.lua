@@ -80,6 +80,7 @@ function PBHUD_SaveStuff()
 
 
 end
+
 --[PBHUD_OnLoad]-------------------------------------------------------------------------
 function PBHUD_OnLoad(self)
     PBHUD_Version 	= "Pet Battle HUD v"..GetAddOnMetadata("petbattlehud", "Version");
@@ -103,6 +104,117 @@ function PBHUD_OnLoad(self)
 	self:RegisterEvent("PARTY_MEMBERS_CHANGED");
 	self:RegisterEvent("PARTY_MEMBER_DISABLE");
 	self:RegisterEvent("PARTY_MEMBER_ENABLE");
+	
+	--[[ 
+	
+	
+	<Button name="$parentBandage">	
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		
+		<Anchors>		
+				<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT" >
+					<Offset>
+						<AbsDimension x="20" y="-58"/>
+					</Offset>
+				</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">			
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Bandage_05">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>				
+			</OnLoad>			
+			<OnClick>				
+			</OnClick>		
+			<OnEnter>
+			</OnEnter>			
+			<OnLeave>
+			</OnLeave>
+		</Scripts>
+	</Button>
+	
+	
+
+	
+	if(PBHUDRevive==nil) then
+		PBHUDRevive = GUI:CreateReviveButton("Revive",self);
+	
+	
+		local HEAL_PET_SPELL = 125439
+		local spellName, spellSubname, spellIcon = GetSpellInfo(HEAL_PET_SPELL)
+		local start, duration, enable = GetSpellCooldown(HEAL_PET_SPELL)
+		
+		PBHUDRevive = CreateFrame("Button", self:GetName().."Revive",UIParent,"secureactionbuttontemplate")
+		PBHUDRevive:SetAttribute("type", "spell")
+		PBHUDRevive.spellID = HEAL_PET_SPELL
+		PBHUDRevive:SetAttribute("spell",spellName)
+		PBHUDRevive.Icon = PBHUDRevive:CreateTexture("ReviveIcon","ARTWORK")
+		PBHUDRevive.Icon:SetTexture(spellIcon)
+		PBHUDRevive.Icon:SetAllPoints()
+		PBHUDRevive.Border = PBHUDRevive:CreateTexture("ReviveBorder","OVERLAY","ActionBarFlyoutButton-IconFrame")
+		PBHUDRevive:SetPushedTexture("Interface\\Buttons\\UI-Quickslot-Depress")
+		PBHUDRevive:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square","ADD")
+		PBHUDRevive.Cooldown = CreateFrame("Cooldown", "ReviveCooldown",PBHUDRevive, "CooldownFrameTemplate")
+		CooldownFrame_SetTimer(PBHUDRevive.Cooldown, start, duration, enable)
+		PBHUDRevive:RegisterEvent("SPELL_UPDATE_COOLDOWN")
+		PBHUDRevive:RegisterEvent("PLAYER_REGEN_DISABLED")
+		PBHUDRevive:RegisterEvent("PLAYER_REGEN_ENABLED")
+		PBHUDRevive:SetScript("OnShow", PBHUDReviveOnShow)
+		PBHUDRevive:SetScript("OnHide", PBHUDReviveOnHide)
+		PBHUDRevive:SetScript("OnLeave", PBHUDReviveOnLeave)
+		PBHUDRevive:SetScript("OnEvent", PBHUDReviveOnEvent)
+		PBHUDRevive:SetScript("OnEnter", PetJournalHealPetButton_OnEnter )
+		
+	end
+
+	if(PBHUDBandage~=nil) then
+	
+		local itemName = "Battle Pet Bandage"
+		local icon = GetItemIcon(86143)
+		local itemCount = GetItemCount(86143)
+	
+		PBHUDBandage:SetAttribute("unit", "player")
+		PBHUDBandage:SetAttribute("type", "macro")
+		PBHUDBandage:SetAttribute("macrotext","/use item:86143" )
+		
+		PBHUDBandage.Icon = PBHUDBandage:CreateTexture("PBHUDBandageIcon","ARTWORK")
+		PBHUDBandage.Icon:SetTexture(icon)
+		PBHUDBandage.Icon:SetAllPoints()
+		
+		PBHUDBandage.Border = PBHUDBandage:CreateTexture("PBHUDBandageBorder","OVERLAY","ActionBarFlyoutButton-IconFrame")
+		PBHUDBandage:SetPushedTexture("Interface\\PBHUDBandages\\UI-Quickslot-Depress")
+		PBHUDBandage:SetHighlightTexture("Interface\\PBHUDBandages\\PBHUDBandageHilight-Square","ADD")
+		
+		PBHUDBandage.QuantityOwned = PBHUDBandage:CreateFontString(nil,"OVERLAY","GameFontHighlight")
+		PBHUDBandage.QuantityOwned:SetText(itemCount)
+		PBHUDBandage.QuantityOwned:SetPoint("BOTTOMRIGHT",PBHUDBandage,"BOTTOMRIGHT",-2,2)
+		PBHUDBandage.QuantityOwned:SetJustifyH("RIGHT")
+		
+		PBHUDBandage:SetScript("OnEvent", PBHUDBandageOnEvent)
+		PBHUDBandage:SetScript("OnShow",  PBHUDBandageOnShow)
+		PBHUDBandage:SetScript("OnHide",  PBHUDBandageOnHide)
+		PBHUDBandage:SetScript("OnEnter", PBHUDBandageOnEnter)
+		PBHUDBandage:SetScript("OnLeave", PBHUDBandageOnLeave)
+		
+		PBHUDBandage:RegisterEvent("BAG_UPDATE")
+	end
+	]]
+
 
 end
 --[PBHUD_OnEvent]--------------------------------------------------------------------
