@@ -1,0 +1,52 @@
+
+=== Coming soon ===
+*Use PetBattle Teams information to quickly change pet teams if you have that addon installed.
+*Lock Pet Battle HUD in place
+*Max, Medium, and Mini styles that will take up more or less screen area.
+*Heal pets buttons that will use the pet battle bandages, or global cooldown whichever is available.
+*Targetting system for minimap that will alert you if there is a pet you do not have available.
+
+=== v5.3.0.0 === 
+
+* Updated for patch 5.3
+
+=== v5.2.0.2 ===
+
+*Fixed "Hide while in party" option
+*Trimmed background area
+
+=== v5.2.0.0 ===
+
+*Update/fixed for patch 5.2
+
+=== v5.1.0.2 ===
+
+*Couple more minor bug fixes for 5.1 patch
+*Added /pbh missing on (or off) - this will turn on or off the messages for what pets you are missing
+
+=== v5.2.0.0-5.2.0.1 ===
+
+* Update for 5.2 patch
+* Added options panel
+
+=== v5.1.0.0 ===
+*Update/fixed for patch 5.1
+
+=== v5.0.7.2 ===
+*Added pet family indicators
+*Fixed some bugs
+
+=== v5.0.7 , v5.0.7.1 ===
+*Bug fix, updated UI elements 
+
+=== v5.0.6 ===
+
+*Added level bubbles
+*Added colors to pets names to indicate quality of the pet
+*Added speed information
+*Added power information
+
+=== v5.0.5 ===
+
+*Pet team levels, hp/maxhp bars, xp/maxxp bars, updated in real time during pet battles, and any other time pet information changes.
+*Zone information when you enter a new zone or exit a pet battle tells you what pets are available for capture in the zone.
