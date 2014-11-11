@@ -6,6 +6,10 @@
 *Heal pets buttons that will use the pet battle bandages, or global cooldown whichever is available.
 *Targetting system for minimap that will alert you if there is a pet you do not have available.
 
+=== v6.0.0.0 === 
+
+* Updated for patch 6.0
+
 === v5.3.0.0 === 
 
 * Updated for patch 5.3

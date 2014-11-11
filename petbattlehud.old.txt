@@ -1,0 +1,149 @@
+----- This is just a temporary storage / reference file. Ignore it! Thanks
+
+--[[    sml_Dprint(PBHUD_db.Debug,"PBHUD",	
+                "petID["..tostring(petID).."]"..
+                "speciesID["..tostring(speciesID).."]"..
+                "owned["..tostring(owned).."]"..
+                "customName["..tostring(customName).."]"..
+                "level["..tostring(level).."]"..
+                "favorite["..tostring(favorite).."]"..
+                "isRevoked["..tostring(isRevoked).."]"..
+                "speciesName["..tostring(speciesName).."]"..
+                "icon["..tostring(icon).."]"..
+                "petType["..tostring(petType).."]"..
+                "companionID["..tostring(companionID).."]"..
+                "tooltip["..tostring(tooltip).."]"..
+                "description["..tostring(description).."]"..
+                "isWild["..tostring(isWild).."]"..
+                "canBattle["..tostring(canBattle).."]"..
+                "isTradeable["..tostring(isTradeable).."]"..
+                "isUnique["..tostring(isUnique).."]" ); ]]
+--[[  C_PetJournal.FindPetIDByName
+        C_PetJournal.GetNumCollectedInfo
+        C_PetJournal.GetOwnedBattlePetString
+        C_PetJournal.GetPetSortParameter
+        C_PetJournal.GetPetTeamAverageLevel
+        C_PetJournal.GetSummonedPetGUID
+        C_PetJournal.SetPetSortParameter
+        C_PetJournal.SummonPetByGUID
+        C_PetJournal.SummonRandomPet	]]
+--[[    local p = C_PetJournal;
+          p.ClearSearchFilter();
+          for i=1,p.GetNumPets(false) do
+            local id,_,_,_,_,_,_,n,_,_,_,d=p.GetPetInfoByIndex(i);
+            local 	speciesID, customName, level, xp, maxxp, displayID,
+              name, icon, petType, creatureID = p.GetPetInfoByPetID(id);
+            local hp , maxhp, power, speed, rarity = p.GetPetStats(speciesID);
+          end ]]
+        ------------------------------------------------------------------------[Print DEBUG information]
+--[[  sml_Dprint(PBHUD_db.Debug,"PBHUD","slot["..slot..
+							"] petID["..PBHUD_db.PetTeam[slot].petID..
+							"] name["..PBHUD_db.PetTeam[slot].name..
+							"] rarity["..PBHUD_db.PetTeam[slot].rarity..
+							"] speed["..PBHUD_db.PetTeam[slot].speed..
+							"] power["..PBHUD_db.PetTeam[slot].power..
+							"] petType["..PBHUD_db.PetTeam[slot].petType..
+							"] displayID["..PBHUD_db.PetTeam[slot].displayID..
+							"] speciesID["..PBHUD_db.PetTeam[slot].speciesID..
+							"]");
+]] 
+
+  --[[	<Button name="$parentBandage">	
+		<Size>
+			<AbsDimension x="24" y="24"/>
+		</Size>
+		
+		<Anchors>		
+				<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT" >
+					<Offset>
+						<AbsDimension x="20" y="-58"/>
+					</Offset>
+				</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">			
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Bandage_05">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>				
+			</OnLoad>			
+			<OnClick>				
+			</OnClick>		
+			<OnEnter>
+			</OnEnter>			
+			<OnLeave>
+			</OnLeave>
+		</Scripts>
+	</Button>
+	if(PBHUDRevive==nil) then
+		PBHUDRevive = GUI:CreateReviveButton("Revive",self);
+    local HEAL_PET_SPELL = 125439
+		local spellName, spellSubname, spellIcon = GetSpellInfo(HEAL_PET_SPELL)
+		local start, duration, enable = GetSpellCooldown(HEAL_PET_SPELL)  
+		PBHUDRevive = CreateFrame("Button", self:GetName().."Revive",UIParent,"secureactionbuttontemplate")
+		PBHUDRevive:SetAttribute("type", "spell")
+		PBHUDRevive.spellID = HEAL_PET_SPELL
+		PBHUDRevive:SetAttribute("spell",spellName)
+		PBHUDRevive.Icon = PBHUDRevive:CreateTexture("ReviveIcon","ARTWORK")
+		PBHUDRevive.Icon:SetTexture(spellIcon)
+		PBHUDRevive.Icon:SetAllPoints()
+		PBHUDRevive.Border = PBHUDRevive:CreateTexture("ReviveBorder","OVERLAY","ActionBarFlyoutButton-IconFrame")
+		PBHUDRevive:SetPushedTexture("Interface\\Buttons\\UI-Quickslot-Depress")
+		PBHUDRevive:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square","ADD")
+		PBHUDRevive.Cooldown = CreateFrame("Cooldown", "ReviveCooldown",PBHUDRevive, "CooldownFrameTemplate")
+		CooldownFrame_SetTimer(PBHUDRevive.Cooldown, start, duration, enable)
+		PBHUDRevive:RegisterEvent("SPELL_UPDATE_COOLDOWN")
+		PBHUDRevive:RegisterEvent("PLAYER_REGEN_DISABLED")
+		PBHUDRevive:RegisterEvent("PLAYER_REGEN_ENABLED")
+		PBHUDRevive:SetScript("OnShow", PBHUDReviveOnShow)
+		PBHUDRevive:SetScript("OnHide", PBHUDReviveOnHide)
+		PBHUDRevive:SetScript("OnLeave", PBHUDReviveOnLeave)
+		PBHUDRevive:SetScript("OnEvent", PBHUDReviveOnEvent)
+		PBHUDRevive:SetScript("OnEnter", PetJournalHealPetButton_OnEnter )
+		
+	end
+
+	if(PBHUDBandage~=nil) then
+	
+		local itemName = "Battle Pet Bandage"
+		local icon = GetItemIcon(86143)
+		local itemCount = GetItemCount(86143)
+	
+		PBHUDBandage:SetAttribute("unit", "player")
+		PBHUDBandage:SetAttribute("type", "macro")
+		PBHUDBandage:SetAttribute("macrotext","/use item:86143" )
+		
+		PBHUDBandage.Icon = PBHUDBandage:CreateTexture("PBHUDBandageIcon","ARTWORK")
+		PBHUDBandage.Icon:SetTexture(icon)
+		PBHUDBandage.Icon:SetAllPoints()
+		
+		PBHUDBandage.Border = PBHUDBandage:CreateTexture("PBHUDBandageBorder","OVERLAY","ActionBarFlyoutButton-IconFrame")
+		PBHUDBandage:SetPushedTexture("Interface\\PBHUDBandages\\UI-Quickslot-Depress")
+		PBHUDBandage:SetHighlightTexture("Interface\\PBHUDBandages\\PBHUDBandageHilight-Square","ADD")
+		
+		PBHUDBandage.QuantityOwned = PBHUDBandage:CreateFontString(nil,"OVERLAY","GameFontHighlight")
+		PBHUDBandage.QuantityOwned:SetText(itemCount)
+		PBHUDBandage.QuantityOwned:SetPoint("BOTTOMRIGHT",PBHUDBandage,"BOTTOMRIGHT",-2,2)
+		PBHUDBandage.QuantityOwned:SetJustifyH("RIGHT")
+		
+		PBHUDBandage:SetScript("OnEvent", PBHUDBandageOnEvent)
+		PBHUDBandage:SetScript("OnShow",  PBHUDBandageOnShow)
+		PBHUDBandage:SetScript("OnHide",  PBHUDBandageOnHide)
+		PBHUDBandage:SetScript("OnEnter", PBHUDBandageOnEnter)
+		PBHUDBandage:SetScript("OnLeave", PBHUDBandageOnLeave)
+		
+		PBHUDBandage:RegisterEvent("BAG_UPDATE")
+	end
+	]]
