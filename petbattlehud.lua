@@ -4,19 +4,11 @@ function PBHUD_ResetLog()
   PBHUD_db.LOG=nil;
   PBHUD_db.LOGLINE=1;
 end
------------------------------------------------------------------------------
-function PBHUD_InGroup()
-  if( ( UnitInParty("player")==1 ) 	or
-    ( IsInRaid()==true) ) then
-    return true
-  end
-  return false
-end
 --[PBHUD_OnUpdate]-------------------------------------------------------------------------
 function PBHUD_OnUpdate(self)
   if( PBHUD_db~=nil ) then
     if( PBHUD_db.b_party_hide ) then
-      local ingroup=PBHUD_InGroup();
+      local ingroup=sml_ingroup();
       if( ingroup ) then
         PBHUD:Hide();
       else
@@ -134,16 +126,16 @@ function PBHUD_OnEvent(self, event, ...)
         PBHUD_db.b_party_hide=true;
       end
       PBHUD_db["Version"]	= PBHUD_Version;
-      PBHUD_db["Name"]	  = UnitName("player");
+      PBHUD_db["Name"]	  	= UnitName("player");
       PBHUD_db["Server"]	= GetRealmName();
       PBHUD_db["Locale"]	= GetLocale();
       PBHUD_db["Race"],
-      PBHUD_db["RaceEn"]  = UnitRace("player")
+      PBHUD_db["RaceEn"]  	= UnitRace("player")
       PBHUD_db["Class"],
-      PBHUD_db["ClassEn"] = UnitClass("player");
+      PBHUD_db["ClassEn"] 	= UnitClass("player");
       PBHUD_db["FactionEn"],
-      PBHUD_db["Faction"] = UnitFactionGroup("player");
-      PBHUD_db.Enabled    = true;
+      PBHUD_db["Faction"] 	= UnitFactionGroup("player");
+      PBHUD_db.Enabled    	= true;
       if(PBHUD_db.PetTeam == nil) then
         PBHUD_db.PetTeam = {};
       end
@@ -476,34 +468,23 @@ function PBHUD_CommandHandler(msg)
 end
 -----------------------------------------------------------------------------
 function PBHUD_SetShowMissing(x)
-  x=PBHUD_MakeTrue(x);
+  x=sml_maketrue(x);
   PBHUD_db.b_show_missing=x;
   sml_print("PBHUD","Show Missing Pets: "..tostring(PBHUD_db.b_show_missing));
 end
 -----------------------------------------------------------------------------
 function PBHUD_SetShowOnlyMissing(x)
-  x=PBHUD_MakeTrue(x);
+  x=sml_maketrue(x);
   PBHUD_db.b_show_only_missing=x;
   sml_print("PBHUD","Show Only Missing Pets: "..tostring(PBHUD_db.b_show_only_missing));
 end
 -----------------------------------------------------------------------------
 function PBHUD_SetPartyHide(x)
-  x=PBHUD_MakeTrue(x);
+  x=sml_maketrue(x);
   PBHUD_db.b_party_hide=x;
   sml_print("PBHUD","Party Hide "..tostring(PBHUD_db.b_party_hide));
 end
------------------------------------------------------------------------------
-function PBHUD_MakeTrue(x)	
-  if( ( x=="on" ) or
-    ( x=="true" ) or 
-    ( x=="yes" ) or
-    ( x=="1" ) or
-    ( x==1 ) )
-  then
-    return true;
-  end
-  return false;
-end
+----------------------------------------------------------------------------
 function PBHUDOptions_Toggle()
   PBHUDOptionsFrame:Show();
 end
