@@ -444,9 +444,9 @@ function PBHUD_CommandHandler(msg)
   if(msg=="hide") then PBHUD:Hide() end
   if(msg=="debug") then
 	if( PBHUD_db.Debug==true ) then
-	  PBHUD_db.Debug=false sml_print("PBHUD","Debugging off")
-	else
-	  PBHUD_db.Debug=true sml_print("PBHUD","Debugging on")
+	  PBHUD_db.Debug=false sml_print("Pet Battle HUD","Debugging off")
+	else 
+	  PBHUD_db.Debug=true sml_print("Pet Battle HUD","Debugging on")
 	end
   end
   if(narg[0]=="missing") then PBHUD_SetShowMissing(narg[1]) end
@@ -455,19 +455,19 @@ end
 function PBHUD_SetShowMissing(x)
   x=sml_maketrue(x)
   PBHUD_db.b_show_missing=x
-  sml_print("PBHUD","Show Missing Pets: "..tostring(PBHUD_db.b_show_missing))
+  sml_print("Pet Battle HUD","Show Missing Pets: "..tostring(PBHUD_db.b_show_missing))
 end
 ------------------------------------------------------------------------
 function PBHUD_SetShowOnlyMissing(x)
   x=sml_maketrue(x)
   PBHUD_db.b_show_only_missing=x
-  sml_print("PBHUD","Show Only Missing Pets: "..tostring(PBHUD_db.b_show_only_missing))
+  sml_print("Pet Battle HUD","Show Only Missing Pets: "..tostring(PBHUD_db.b_show_only_missing))
 end
 ------------------------------------------------------------------------
 function PBHUD_SetPartyHide(x)
   x=sml_maketrue(x)
   PBHUD_db.b_party_hide=x
-  sml_print("PBHUD","Party Hide "..tostring(PBHUD_db.b_party_hide))
+  sml_print("Pet Battle HUD","Party Hide "..tostring(PBHUD_db.b_party_hide))
 end
 ------------------------------------------------------------------------
 function PBHUDOptions_Toggle()
