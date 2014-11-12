@@ -7,7 +7,7 @@
 ## Author: Smashed (Bladefist) / Dagum (Quel'dorei)
 ## Notes: Pet Battle HUD
 ## email: seth@parson.email
-## Version: 6.0.3.3
+## Version: 6.0.3.4
 ## SavedVariables: PBHUD_Profile
 ## petbattlehud.lua
 ## Dependencies: smashed-library
