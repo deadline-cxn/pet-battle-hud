@@ -1,16 +1,11 @@
 ## Interface: 60000
-## X-Curse-Packaged-Version: 6.0.3.1
-## X-Curse-Project-Name: Pet Battle HUD
-## X-Curse-Project-ID: pet-battle-hud
-## X-Curse-Repository-ID: wow/pet-battle-hud/mainline
 ## Title: Pet Battle HUD
 ## Author: Smashed (Bladefist) / Dagum (Quel'dorei)
 ## Notes: Pet Battle HUD
 ## email: seth@parson.email
-## Version: 6.0.3.4
 ## SavedVariables: PBHUD_Profile
 ## petbattlehud.lua
 ## Dependencies: smashed-library
- 
 petbattlehud.xml
 petbattlehudoptions.xml
+## Version: 6.0.3.9
