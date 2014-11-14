@@ -90,41 +90,7 @@ function PBHUD_OnLoad(self)
 end
 ------------------------------------------------------------------------
 function PBHUD_OnEvent(self,event,...)
-  -- local arg1 = ...
   narg,numarg=sml_nargify(...)
-  --[[
-  local argz={} argz[0],argz[1],argz[2],argz[3],argz[4],argz[5],argz[6],argz[7],argz[8],argz[9],argz[10],argz[11],argz[12],argz[13],argz[14],argz[15],argz[16],argz[17],argz[18],argz[19],argz[20],argz[21],argz[22],argz[23],argz[24],argz[25],argz[26],argz[27],argz[28],argz[29]=...
-  local argztxt=""
-  for ari=0,29 do
-	if(argz[ari]~=nil) then
-	  argztxt=argztxt.." argz["..ari.."]=["..tostring(argz[ari]).."]"
-	end
-	if(argz[ari]==nil) then
-	  argz[ari]="(nil)"
-	end
-  end
-  local narg=nil
-  narg={}
-  local numarg=0
-  if(argz[0]~=nil) then
-	for word in string.gmatch(argz[0],"%w+") do
-	  narg[numarg]=string.lower(word)
-	  if(narg[numarg]=="") then
-		narg[numarg]=nil
-		numarg=numarg-1
-	  end
-	  numarg=numarg+1
-	end
-  end
-  local otxt=" "
-  local oti=0
-  for oti=0,numarg do
-	if(narg[oti]~=nil) then
-	  otxt=otxt.." ("..oti..":"..narg[oti]..")"
-	end
-  end
-  ]]
-
   if (event=="VARIABLES_LOADED") then
 	if(not PBHUD_Profile) then PBHUD_Profile={} end
 	if(not PBHUD_Profile[GetRealmName()]) then PBHUD_Profile[GetRealmName()]={} end
