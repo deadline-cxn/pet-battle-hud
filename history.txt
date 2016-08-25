@@ -1,10 +1,6 @@
+=== v7.0.0.1 ===
 
-=== Coming soon ===
-*Use PetBattle Teams information to quickly change pet teams if you have that addon installed.
-*Lock Pet Battle HUD in place
-*Max, Medium, and Mini styles that will take up more or less screen area.
-*Heal pets buttons that will use the pet battle bandages, or global cooldown whichever is available.
-*Targetting system for minimap that will alert you if there is a pet you do not have available.
+* Updated for patch 7.0
 
 === v6.0.0.0 === 
 

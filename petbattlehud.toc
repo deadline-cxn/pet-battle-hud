@@ -1,11 +1,11 @@
-## Interface: 60000
+## Interface: 70000
 ## Title: Pet Battle HUD
+## Version: 7.0.0.1
 ## Author: Smashed (Bladefist) / Dagum (Quel'dorei)
 ## Notes: Pet Battle HUD
-## email: seth@parson.email
+## email: defectiveseth@gmail.com
 ## SavedVariables: PBHUD_Profile
-## petbattlehud.lua
 ## Dependencies: smashed-library
 petbattlehud.xml
 petbattlehudoptions.xml
-## Version: 6.0.3.17
+
