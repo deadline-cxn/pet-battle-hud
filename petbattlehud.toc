@@ -1,11 +1,15 @@
-## Interface: 70000
+## Interface: 80000
 ## Title: Pet Battle HUD
-## Version: 7.0.0.1
-## Author: Smashed (Bladefist) / Dagum (Quel'dorei)
+## Version: 8.0.0.0
+## Author: Deadlidin (Area 52) / Smashed (Bladefist)
 ## Notes: Pet Battle HUD
 ## email: defectiveseth@gmail.com
 ## SavedVariables: PBHUD_Profile
 ## Dependencies: smashed-library
+## X-Curse-Packaged-Version: 8.0.0.0
+## X-Curse-Project-Name: Pet Battle HUD
+## X-Curse-Project-ID: pet-battle-hud
+## X-Curse-Repository-ID: wow/pet-battle-hud/mainline
 petbattlehud.xml
 petbattlehudoptions.xml
 
