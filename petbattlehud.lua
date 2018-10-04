@@ -84,7 +84,7 @@ function PBHUD_OnLoad(self)
   self:RegisterEvent("PARTY_LEADER_CHANGED")
   self:RegisterEvent("PARTY_LFG_RESTRICTED")
   self:RegisterEvent("PARTY_LOOT_METHOD_CHANGED")
-  self:RegisterEvent("PARTY_MEMBERS_CHANGED")
+  -- self:RegisterEvent("PARTY_MEMBERS_CHANGED")
   self:RegisterEvent("PARTY_MEMBER_DISABLE")
   self:RegisterEvent("PARTY_MEMBER_ENABLE")
 end

@@ -1,6 +1,6 @@
 ## Interface: 80000
 ## Title: Pet Battle HUD
-## Version: 8.0.0.0
+## Version: 8.0.0.1
 ## Author: Deadlidin (Area 52) / Smashed (Bladefist)
 ## Notes: Pet Battle HUD
 ## email: defectiveseth@gmail.com
