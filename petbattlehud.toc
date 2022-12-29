@@ -1,15 +1,17 @@
-## Interface: 80000
+## Interface: 100002
+## X-Min-Interface: 100002
+## X-Min-Interface-Classic: 11403
+## X-Min-Interface-BCC: 20504
+## X-Min-Interface-Wrath: 30400
 ## Title: Pet Battle HUD
-## Version: 8.0.0.1
-## Author: Deadlidin (Area 52) / Smashed (Bladefist)
+## Version: 10.0.0.2
+## Author: Deadlidin (Dalaran/Jodra)
 ## Notes: Pet Battle HUD
-## email: defectiveseth@gmail.com
+## email: deadline@cityxen.net
 ## SavedVariables: PBHUD_Profile
-## Dependencies: smashed-library
-## X-Curse-Packaged-Version: 8.0.0.0
+## X-Curse-Packaged-Version: 10.0.0.2
 ## X-Curse-Project-Name: Pet Battle HUD
 ## X-Curse-Project-ID: pet-battle-hud
 ## X-Curse-Repository-ID: wow/pet-battle-hud/mainline
 petbattlehud.xml
 petbattlehudoptions.xml
-

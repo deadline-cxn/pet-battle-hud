@@ -1,4 +1,4 @@
--- Filename: petbattlehud.lua Author  : Smashed - Bladefist
+-- Filename: petbattlehud.lua Author  : Dalaran - Deadlidin / Jodra
 ------------------------------------------------------------------------
 function PBHUD_ResetLog()
   PBHUD_db.LOG=nil
