@@ -13,5 +13,9 @@
 ## X-Curse-Project-Name: Pet Battle HUD
 ## X-Curse-Project-ID: pet-battle-hud
 ## X-Curse-Repository-ID: wow/pet-battle-hud/mainline
-petbattlehud.xml
-petbattlehudoptions.xml
+
+pet-battle-hud.xml
+pet-battle-hud-options.xml
+pet-battle-hud.lua
+smashed-library.lua
+
