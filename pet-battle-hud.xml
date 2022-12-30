@@ -363,7 +363,7 @@
 		
 		<Layers>
 			<Layer level="ARTWORK">			
-				<Texture name="$parentIcon" file="Interface\WorldMap\Gear_64Grey">
+				<Texture name="$parentIcon" file="Interface\HELPFRAME\HelpIcon-CharacterStuck">
 					<Size>
 						<AbsDimension x="24" y="24"/>
 					</Size>

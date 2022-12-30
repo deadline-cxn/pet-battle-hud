@@ -112,7 +112,7 @@ end
 
 --[sml_ingroup]----------------------------------------------------------
 function sml_ingroup()
-  if( 	( UnitInParty("player") == 1 ) or
+  if( 	( UnitInParty("player") == true ) or
 	( IsInRaid()==true) ) then
 	return true
   end

@@ -41,18 +41,6 @@ function PBHUD_OnUpdate(self)
 		end;
 	end;
 end;
-function PBHUD_SaveTable(table)
-	PBHUD_db.tables[tostring(table)] = {};
-	for k, v in pairs(table) do
-		PBHUD_db.tables[tostring(table)][k] = {};
-		if string.find(tostring(v), "table:") then
-			PBHUD_db.tables[tostring(table)][k] = PBHUD_SaveTable(v);
-		else
-			PBHUD_db.tables[tostring(table)][k] = v;
-		end;
-	end;
-	return PBHUD_db.tables[tostring(table)];
-end;
 function PBHUD_SaveStuff()
 	PBHUD_db.FlashTimer = nil;
 	PBHUD_db.PBHUD_ChatFrame = nil;
@@ -127,7 +115,7 @@ function PBHUD_OnEvent(self, event, ...)
 			PBHUD_db.counterpbhudlog=0
 			sml_print("Pet Battle HUD", PBHUD_db.Version .. " by " .. PBHUD_Author .. " loaded. For help type /pbh help");
 			PBHUDOptionsFramePanel1MissingPets:SetChecked(PBHUD_db.b_show_missing);
-			PBHUDOptionsFramePanel1MissingPets:SetChecked(PBHUD_db.b_show_only_missing);
+			PBHUDOptionsFramePanel1OnlyMissingPets:SetChecked(PBHUD_db.b_show_only_missing);
 			PBHUDOptionsFramePanel1PartyHide:SetChecked(PBHUD_db.b_party_hide);
 			PBHUD:Scale(2, 2);
 		end;
@@ -155,45 +143,7 @@ function PBHUD_OnEvent(self, event, ...)
 		PBHUD_PetsMissing();
 	end;
 end;
-function PBHUD_PetHeal(petname, heal)
-	if petname == nil then
-		return;
-	end;
-	if heal == nil then
-		return;
-	end;
-	local petslot = PBHUD_GetPetSlotByName(petname);
-	if petslot == nil then
-		return;
-	end;
-	PBHUD_db.PetTeam[petslot].hp = PBHUD_db.PetTeam[petslot].hp + heal;
-	if PBHUD_db.PetTeam[petslot].hp > PBHUD_db.PetTeam[petslot].maxhp then
-		PBHUD_db.PetTeam[petslot].hp = PBHUD_db.PetTeam[petslot].maxhp;
-	end;
-	PBHUD_UpdatePetHUD();
-end;
-function PBHUD_PetDamage(petname, dmg)
-	local gspid = C_PetJournal.GetSummonedPetGUID();
-	if gspid == nil then
-		gspid = "0";
-	end;
-	sml_dprint(PBHUD_db.Debug, "PBHUD", "PBHUD_PetDamage() ->" .. " petname: " .. petname .. " Summoned pet ID: " .. tostring(gspid));
-	if petname == nil then
-		return;
-	end;
-	if dmg == nil then
-		return;
-	end;
-	local petslot = PBHUD_GetPetSlotByName(petname);
-	if petslot == nil then
-		return;
-	end;
-	PBHUD_db.PetTeam[petslot].hp = PBHUD_db.PetTeam[petslot].hp - dmg;
-	if PBHUD_db.PetTeam[petslot].hp < 0 then
-		PBHUD_db.PetTeam[petslot].hp = 0;
-	end;
-	PBHUD_UpdatePetHUD();
-end;
+
 function PBHUD_GetPetSlotByName(petname)
 	for i = 1, 3 do
 		if petname == PBHUD_db.PetTeam[i].name then
@@ -206,7 +156,9 @@ function PBHUD_PetsMissing()
 	C_PetJournal.ClearSearchFilter();
 	local zone = GetZoneText();
 	local nopets = "";
-	for i = 1, C_PetJournal.GetNumPets(false) do
+	local numpets = C_PetJournal.GetNumPets(false)
+
+	for i = 1, numpets do
 		local petID, speciesID, owned, customName, level, favorite, isRevoked, speciesName, icon, petType, companionID, tooltip, description, isWild, canBattle, isTradeable, isUnique = C_PetJournal.GetPetInfoByIndex(i);
 		if string.find(tooltip, zone) then
 			if string.find(tooltip, "Pet Battle:") then
@@ -248,7 +200,6 @@ function PBHUD_UpdatePetHUD()
 	for slot = 1, 3 do
 		if pet ~= nil then
 			if PBHUD_db.PetTeam[slot] == nil then PBHUD_db.PetTeam[slot] = {}; end;
-			-- sml_print("PBHUD_UpdatePetHUD()", "SLOT:"..slot.." (loop start)");
 			pet.abilities = {};
     		pet.petID, pet.abilities[1], pet.abilities[2], pet.abilities[3] = C_PetJournal.GetPetLoadOutInfo(slot);
 			local speciesID, customName, level, xp, maxxp, displayID, favorite, name, icon, petType, creatureID = C_PetJournal.GetPetInfoByPetID(pet.petID);
@@ -365,7 +316,7 @@ function PBHUD_UpdatePetHUD()
 				PBHUD_db.PetTeam[slot].hp_prct = 0
 			end
 
-			if(PBHUD_db.counterpbhudlog<1) then
+			--[[ if(PBHUD_db.counterpbhudlog<1) then
 				if(slot==1) then
 					sml_print("-----------------------------------------------------")
 					sml_print("PBHUD_UpdatePetHUD():","hp,maxhp,inBattle,maxhp2")
@@ -375,7 +326,7 @@ function PBHUD_UpdatePetHUD()
 					
 					PBHUD_db.counterpbhudlog=PBHUD_db.counterpbhudlog+1
 				end
-			end
+			end ]]--
 
 			if PBHUD_db.PetTeam[slot].hp == 0 then
 				PBHUD_db.PetTeam[slot].hp_prct = 1;
@@ -407,13 +358,9 @@ function PBHUD_UpdatePetHUD()
 			_G["PBHUDPet" .. slot .. "HPTexture"]:SetWidth(PBHUD_db.PetTeam[slot].hp_prct);
 			_G["PBHUDPet" .. slot .. "SpeedText"]:SetText(PBHUD_db.PetTeam[slot].speed);
 			_G["PBHUDPet" .. slot .. "PowerText"]:SetText(PBHUD_db.PetTeam[slot].power);
-
-			
-		
 		end
 	end
-
-end;
+end
 
 function PBHUD_ShowHelp(msg)
 	sml_print(nil, "------------------------------------------------------------------------");
@@ -427,6 +374,12 @@ function PBHUD_ShowHelp(msg)
 end;
 function PBHUD_CommandHandler(msg)
 	narg, numarg = sml_nargify(msg);
+
+	if(narg==nil) then
+		PBHUD_ShowHelp();
+		return
+	end
+
 	if msg == "help" or msg == "" or msg == "?" then
 		PBHUD_ShowHelp();
 	end;
@@ -442,6 +395,7 @@ function PBHUD_CommandHandler(msg)
 	if narg[0] == "missing" then
 		PBHUD_SetShowMissing(narg[1]);
 	end;
+
 end;
 function PBHUD_SetShowMissing(x)
 	x = sml_maketrue(x);

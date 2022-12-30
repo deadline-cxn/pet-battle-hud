@@ -15,7 +15,7 @@
 	
     <TitleRegion setAllPoints="true" />	
     
-	<Backdrop bgFile="Interface\Stationery\Stationery_ill1" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="false" >
+	<Backdrop bgFile="Interface\Stationery\Stationery_ill1" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="false" alphaMode="BLEND">
 		<BackgroundInsets>
 			<AbsInset left="11" right="12" top="12" bottom="11" />
 		</BackgroundInsets>
