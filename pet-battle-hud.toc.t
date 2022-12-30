@@ -4,7 +4,7 @@
 ## X-Min-Interface-BCC: 20504
 ## X-Min-Interface-Wrath: 30400
 ## Title: Pet Battle HUD
-## Version: 22.12.30.06.06
+## Version: <VERSION>
 ## Author: Deadlidin (Dalaran/Jodra)
 ## Notes: Pet Battle HUD
 ## email: deadline@cityxen.net

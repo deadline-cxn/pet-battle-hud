@@ -1,6 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:ProjectsWoWBinInterfaceFrameXMLUI.xsd">
 
-<Script file="smashed-library.lua"/>
 <Script file="pet-battle-hud.lua"/>
 
 <Button name="PBH_Template" enableMouse="true" virtual="true">
@@ -130,7 +129,7 @@
 		<!--  HP STUFF -->
 
 		<Layer level="ARTWORK">
-			<Texture name="$parentHPMaxTexture" file="Interface\AddOns\petbattlehud\PBHUD_HPDeficitBar">
+			<Texture name="$parentHPMaxTexture" file="Interface\AddOns\pet-battle-hud\PBHUD_HPDeficitBar">
 				<Size>
 					<AbsDimension x="100" y="10"/>
 				</Size>
@@ -145,7 +144,7 @@
 		</Layer>
 
 		<Layer level="OVERLAY">
-			<Texture name="$parentHPTexture" file="Interface\AddOns\petbattlehud\PBHUD_HPBar">
+			<Texture name="$parentHPTexture" file="Interface\AddOns\pet-battle-hud\PBHUD_HPBar">
 				<Size>
 					<AbsDimension x="100" y="10"/>
 				</Size>
@@ -171,7 +170,7 @@
 		<!--  XP STUFF -->
 
 		<Layer level="ARTWORK">
-			<Texture name="$parentXPMaxTexture" file="Interface\AddOns\petbattlehud\PBHUD_XPMaxBar">
+			<Texture name="$parentXPMaxTexture" file="Interface\AddOns\pet-battle-hud\PBHUD_XPMaxBar">
 				<Size>
 					<AbsDimension x="100" y="10"/>
 				</Size>
@@ -186,7 +185,7 @@
 		</Layer>
 
 		<Layer level="OVERLAY">
-			<Texture name="$parentXPTexture" file="Interface\AddOns\petbattlehud\PBHUD_XPBar">
+			<Texture name="$parentXPTexture" file="Interface\AddOns\pet-battle-hud\PBHUD_XPBar">
 				<Size>
 					<AbsDimension x="100" y="10"/>
 				</Size>
@@ -384,7 +383,7 @@
 		
 		<Scripts>
 			<OnLoad>
-				PBHUDOptionsIcon.tooltipText = "Pet Battle HUD "..GetAddOnMetadata("petbattlehud", "Version").."|r|n"..GetAddOnMetadata("petbattlehud", "Author").."|r|nLeft Click to set options";
+				PBHUDOptionsIcon.tooltipText = "Pet Battle HUD "..GetAddOnMetadata("pet-battle-hud", "Version").."|r|n"..GetAddOnMetadata("pet-battle-hud", "Author").."|r|nLeft Click to set options";
 				PBHUDOptions:Hide();
 			</OnLoad>
 			
@@ -495,4 +494,5 @@
 	 </Onload>
    </Scripts>
 </GameTooltip>
+
 </Ui>
